@@ -1,9 +1,13 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { enumValue } from '../helpers/enum-value';
+
+export enum Aircraft {
+  Narrowbody = 'narrowbody',
+  Regional = 'regional',
+  Widebody = 'widebody',
+}
+
+export type AircraftType = `${Aircraft}`;
 
 /**
  * Returns a random aircraft type.

@@ -1,9 +1,10 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { alphanumeric } from '../string/alphanumeric';
+
+// Temp export
+export const numerics = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+// Temp export
+export const visuallySimilarCharacters = ['0', 'O', '1', 'I', 'L'];
 
 /**
  * Generates a random [record locator](https://en.wikipedia.org/wiki/Record_locator). Record locators

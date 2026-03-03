@@ -1,9 +1,16 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
+
+export interface Airplane {
+  /**
+   * The name of the airplane (e.g. `'Airbus A321'`).
+   */
+  readonly name: string;
+  /**
+   * The IATA code of the airplane (e.g. `'321'`).
+   */
+  readonly iataTypeCode: string;
+}
 
 /**
  * Generates a random airplane.
