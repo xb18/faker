@@ -1,13 +1,4 @@
 import type { FakerCore } from '../../core';
-import type { DateEntryDefinition } from '../../definitions';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { toDate } from '../../internal/date';
-import { assertLocaleData } from '../../internal/locale-proxy';
-import { SimpleModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
 
 /**
