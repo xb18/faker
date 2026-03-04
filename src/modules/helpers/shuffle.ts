@@ -1,14 +1,5 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { SimpleFaker } from '../../simple-faker';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { int } from '../number/int';
-import { fakeEval } from './_eval';
-import { luhnCheckValue } from './_luhn-check';
 
 /**
  * Takes an array and randomizes it in place then returns it.
@@ -53,6 +44,7 @@ export function shuffle<const T>(
  *
  * @since 2.0.1
  */
+// @ts-expect-error TS2394 -- Implementation cannot fullfil the readonly array part, since it needs to comply with the inplace version of the function.
 export function shuffle<const T>(
   fakerCore: FakerCore,
   list: ReadonlyArray<T>,
@@ -94,7 +86,6 @@ export function shuffle<const T>(
     inplace?: boolean;
   }
 ): T[];
-
 export function shuffle<const T>(
   fakerCore: FakerCore,
   list: T[],
