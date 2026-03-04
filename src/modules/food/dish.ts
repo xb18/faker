@@ -1,9 +1,20 @@
 import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
+
+// Temp export
+/**
+ * Converts the given string to title case.
+ *
+ * @param text The text to convert.
+ */
+export function toTitleCase(text: string): string {
+  return text
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
 /**
  * Generates a random dish name.

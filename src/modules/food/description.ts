@@ -1,7 +1,5 @@
 import type { FakerCore } from '../../core';
 import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 
 /**
  * Generates a random dish description.
