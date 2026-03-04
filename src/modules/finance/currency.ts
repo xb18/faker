@@ -1,16 +1,30 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
-import {
-  BitcoinAddressFamily,
-  BitcoinAddressSpecs,
-  BitcoinNetwork,
-} from './_bitcoin';
-import iban from './_iban';
+
+/**
+ * The possible definitions related to currency entries.
+ */
+export interface Currency {
+  /**
+   * The full name for the currency (e.g. `US Dollar`).
+   */
+  name: string;
+
+  /**
+   * The code/short text/abbreviation for the currency (e.g. `USD`).
+   */
+  code: string;
+
+  /**
+   * The symbol for the currency (e.g. `$`).
+   */
+  symbol: string;
+
+  /**
+   * The ISO 4217 numeric code for the currency (e.g. `840`).
+   */
+  numericCode: string;
+}
 
 /**
  * Returns a random currency object, containing `code`, `name`, `symbol`, and `numericCode` properties.

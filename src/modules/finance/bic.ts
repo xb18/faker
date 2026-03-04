@@ -1,19 +1,9 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { alpha } from '../string/alpha';
 import { alphanumeric } from '../string/alphanumeric';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
-import {
-  BitcoinAddressFamily,
-  BitcoinAddressSpecs,
-  BitcoinNetwork,
-} from './_bitcoin';
-import iban from './_iban';
+import { ibanLib } from './_iban-lib';
 
 /**
  * Generates a random SWIFT/BIC code based on the [ISO-9362](https://en.wikipedia.org/wiki/ISO_9362) format.
@@ -46,7 +36,7 @@ export function bic(
     length: 4,
     casing: 'upper',
   });
-  const countryCode = arrayElement(fakerCore, iban.iso3166);
+  const countryCode = arrayElement(fakerCore, ibanLib.iso3166);
   const locationCode = alphanumeric(fakerCore, {
     length: 2,
     casing: 'upper',

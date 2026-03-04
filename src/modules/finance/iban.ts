@@ -1,18 +1,25 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { int } from '../number/int';
-import type { BitcoinAddressFamilyType, BitcoinNetworkType } from './_bitcoin';
-import {
-  BitcoinAddressFamily,
-  BitcoinAddressSpecs,
-  BitcoinNetwork,
-} from './_bitcoin';
-import iban from './_iban';
+import { ibanLib } from './_iban-lib';
+
+/**
+ * Puts a space after every 4 characters.
+ *
+ * @internal
+ *
+ * @param iban The iban to pretty print.
+ */
+export function prettyPrintIban(iban: string): string {
+  let pretty = '';
+  for (let i = 0; i < iban.length; i += 4) {
+    pretty += `${iban.substring(i, i + 4)} `;
+  }
+
+  return pretty.trimEnd();
+}
 
 /**
  * Generates a random IBAN.
@@ -52,8 +59,8 @@ export function iban(
   const { countryCode, formatted = false } = options;
 
   const ibanFormat = countryCode
-    ? iban.formats.find((f) => f.country === countryCode)
-    : arrayElement(fakerCore, iban.formats);
+    ? ibanLib.formats.find((f) => f.country === countryCode)
+    : arrayElement(fakerCore, ibanLib.formats);
 
   if (!ibanFormat) {
     throw new FakerError(`Country code ${countryCode} not supported.`);
@@ -66,20 +73,20 @@ export function iban(
     count += bban.count;
     while (c > 0) {
       if (bban.type === 'a') {
-        s += arrayElement(fakerCore, iban.alpha);
+        s += arrayElement(fakerCore, ibanLib.alpha);
       } else if (bban.type === 'c') {
         if (boolean(fakerCore, 0.8)) {
           s += int(fakerCore, 9);
         } else {
-          s += arrayElement(fakerCore, iban.alpha);
+          s += arrayElement(fakerCore, ibanLib.alpha);
         }
       } else {
         if (c >= 3 && boolean(fakerCore, 0.3)) {
           if (boolean(fakerCore)) {
-            s += arrayElement(fakerCore, iban.pattern100);
+            s += arrayElement(fakerCore, ibanLib.pattern100);
             c -= 2;
           } else {
-            s += arrayElement(fakerCore, iban.pattern10);
+            s += arrayElement(fakerCore, ibanLib.pattern10);
             c--;
           }
         } else {
@@ -94,7 +101,7 @@ export function iban(
   }
 
   let checksum: string | number =
-    98 - iban.mod97(iban.toDigitString(`${s}${ibanFormat.country}00`));
+    98 - ibanLib.mod97(ibanLib.toDigitString(`${s}${ibanFormat.country}00`));
 
   if (checksum < 10) {
     checksum = `0${checksum}`;
