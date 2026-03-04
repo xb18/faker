@@ -1,9 +1,11 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing } from '../../utils/types';
 import { float } from '../number/float';
+import { toColorFormat } from './_to-color-format';
+import type {
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from './_types';
 
 /**
  * Returns a CMYK color.

@@ -1,9 +1,25 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing } from '../../utils/types';
 import { enumValue } from '../helpers/enum-value';
+
+/**
+ * Functions supported by CSS to produce color.
+ */
+export enum CssFunction {
+  RGB = 'rgb',
+  RGBA = 'rgba',
+  HSL = 'hsl',
+  HSLA = 'hsla',
+  HWB = 'hwb',
+  CMYK = 'cmyk',
+  LAB = 'lab',
+  LCH = 'lch',
+  COLOR = 'color',
+}
+
+/**
+ * Functions supported by CSS to produce color.
+ */
+export type CssFunctionType = `${CssFunction}`;
 
 /**
  * Returns a random CSS-supported color function name.

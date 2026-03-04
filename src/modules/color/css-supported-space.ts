@@ -1,9 +1,21 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing } from '../../utils/types';
 import { enumValue } from '../helpers/enum-value';
+
+/**
+ * Color space names supported by CSS.
+ */
+export enum CssSpace {
+  SRGB = 'sRGB',
+  DisplayP3 = 'display-p3',
+  REC2020 = 'rec2020',
+  A98RGB = 'a98-rgb',
+  ProphotoRGB = 'prophoto-rgb',
+}
+
+/**
+ * Color space names supported by CSS.
+ */
+export type CssSpaceType = `${CssSpace}`;
 
 /**
  * Returns a random CSS-supported color space name.

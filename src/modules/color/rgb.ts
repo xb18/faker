@@ -1,11 +1,16 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { Casing } from '../../utils/types';
 import { float } from '../number/float';
 import { int } from '../number/int';
 import { hexadecimal } from '../string/hexadecimal';
+import { formatHexColor } from './_format-hex-color';
+import { toColorFormat } from './_to-color-format';
+import type {
+  ColorFormat,
+  NumberColorFormat,
+  StringColorFormat,
+} from './_types';
+import type { CssFunctionType } from './css-supported-function';
 
 /**
  * Returns an RGB color.
