@@ -1,7 +1,4 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { email as internetEmail } from '../internet/email';
@@ -12,6 +9,9 @@ import { lastName as personLastName } from '../person/last-name';
 import { commitDate } from './commit-date';
 import { commitMessage } from './commit-message';
 import { commitSha } from './commit-sha';
+
+// temp export
+export const nbsp = '\u00A0';
 
 /**
  * Generates a random commit entry as printed by `git log`.
