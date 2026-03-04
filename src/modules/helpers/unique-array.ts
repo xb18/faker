@@ -1,13 +1,4 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { SimpleFaker } from '../../simple-faker';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
-import { fakeEval } from './_eval';
-import { luhnCheckValue } from './_luhn-check';
 import { shuffle } from './shuffle';
 
 /**

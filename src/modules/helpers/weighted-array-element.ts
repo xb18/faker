@@ -1,14 +1,6 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { SimpleFaker } from '../../simple-faker';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { float } from '../number/float';
-import { fakeEval } from './_eval';
-import { luhnCheckValue } from './_luhn-check';
 
 /**
  * Returns a weighted random element from the given array. Each element of the array should be an object with two keys `weight` and `value`.
