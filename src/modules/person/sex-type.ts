@@ -1,11 +1,29 @@
 import type { FakerCore } from '../../core';
-import type { PersonEntryDefinition } from '../../definitions/person';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
 import { enumValue } from '../helpers/enum-value';
+
+/**
+ * The enum for values corresponding to a person's sex.
+ */
+export enum Sex {
+  /**
+   * Is used for values that are primarily attributable to only females.
+   */
+  Female = 'female',
+  /**
+   * Is used for values that cannot clearly be attributed to a specific sex or are used for both sexes.
+   */
+  Generic = 'generic',
+  /**
+   * Is used for values that are primarily attributable to only males.
+   */
+  Male = 'male',
+}
+
+/**
+ * The parameter type for values corresponding to a person's sex.
+ */
+export type SexType = `${Sex}`;
 
 /**
  * Returns a random sex type. The `SexType` is intended to be used in parameters and conditions.

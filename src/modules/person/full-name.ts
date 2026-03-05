@@ -1,9 +1,4 @@
 import type { FakerCore } from '../../core';
-import type { PersonEntryDefinition } from '../../definitions/person';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
 import { mustache } from '../helpers/mustache';
 import { weightedArrayElement } from '../helpers/weighted-array-element';
@@ -11,6 +6,8 @@ import { firstName as personFirstName } from './first-name';
 import { lastName as personLastName } from './last-name';
 import { middleName } from './middle-name';
 import { prefix } from './prefix';
+import type { SexType } from './sex-type';
+import { Sex } from './sex-type';
 import { suffix } from './suffix';
 
 /**
@@ -49,7 +46,7 @@ export function fullName(
     /**
      * The optional sex to use. Can be either `'female'` or `'male'`.
      *
-     * @default helpersArrayElement(fakerCore, ['female', 'male'])
+     * @default helpersArrayElement(fakerCore, [Sex.Female, Sex.Male])
      */
     sex?: SexType;
   } = {}

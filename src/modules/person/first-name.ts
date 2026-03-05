@@ -1,10 +1,7 @@
 import type { FakerCore } from '../../core';
-import type { PersonEntryDefinition } from '../../definitions/person';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
+import { selectDefinition } from './_select-definition';
+import type { SexType } from './sex-type';
 
 /**
  * Returns a random first name.
