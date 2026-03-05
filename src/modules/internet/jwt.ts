@@ -1,9 +1,5 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
 import { toBase64Url } from '../../internal/base64';
-import { ModuleBase } from '../../internal/module-base';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { name } from '../company/name';
 import { anytime } from '../date/anytime';
@@ -11,7 +7,6 @@ import { recent } from '../date/recent';
 import { soon } from '../date/soon';
 import { alphanumeric } from '../string/alphanumeric';
 import { uuid } from '../string/uuid';
-import { charMapping } from './_char-mappings';
 import { jwtAlgorithm } from './jwt-algorithm';
 
 /**

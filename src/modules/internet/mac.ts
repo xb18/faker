@@ -1,12 +1,5 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { toBase64Url } from '../../internal/base64';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { hex } from '../number/hex';
-import { charMapping } from './_char-mappings';
 
 /**
  * Generates a random mac address.
@@ -68,7 +61,6 @@ export function mac(
         separator?: string;
       }
 ): string;
-
 export function mac(
   fakerCore: FakerCore,
   options:

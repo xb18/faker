@@ -1,12 +1,12 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { toBase64Url } from '../../internal/base64';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
-import { charMapping } from './_char-mappings';
+
+export type HTTPStatusCodeType =
+  | 'informational'
+  | 'success'
+  | 'clientError'
+  | 'serverError'
+  | 'redirection';
 
 /**
  * Generates a random HTTP status code.
@@ -27,7 +27,7 @@ export function httpStatusCode(
     /**
      * A list of the HTTP status code types that should be used.
      *
-     * @default Object.keys(faker.definitions.internet.http_status_code)
+     * @default Object.keys(fakerCore.locale.internet.http_status_code)
      */
     types?: ReadonlyArray<HTTPStatusCodeType>;
   } = {}
