@@ -1,10 +1,4 @@
 import type { FakerCore } from '../../core';
-import type { Distributor } from '../../distributors/distributor';
-import { uniformDistributor } from '../../distributors/uniform';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { int } from './int';
 
 /**
