@@ -1,10 +1,6 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 import { multiple } from '../helpers/multiple';
-import { filterWordListByLength } from '../word/_filter-word-list-by-length';
 import { paragraph } from './paragraph';
 
 /**

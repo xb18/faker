@@ -1,10 +1,10 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
-import { filterWordListByLength } from '../word/_filter-word-list-by-length';
+import { lines } from './lines';
+import { paragraph } from './paragraph';
+import { paragraphs } from './paragraphs';
+import { sentence } from './sentence';
+import { sentences } from './sentences';
 
 /**
  * Generates a random text based on a random lorem method.
@@ -23,15 +23,13 @@ import { filterWordListByLength } from '../word/_filter-word-list-by-length';
  * @since 3.1.0
  */
 export function text(fakerCore: FakerCore): string {
-  const methods: Array<keyof LoremModule> = [
-    'sentence',
-    'sentences',
-    'paragraph',
-    'paragraphs',
-    'lines',
-  ];
+  const method = arrayElement(fakerCore, [
+    sentence,
+    sentences,
+    paragraph,
+    paragraphs,
+    lines,
+  ]);
 
-  const method = arrayElement(fakerCore, methods);
-
-  return this[method]();
+  return method(fakerCore);
 }
