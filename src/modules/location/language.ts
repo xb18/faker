@@ -1,10 +1,25 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
+
+/**
+ * Represents a language with its full name, 2 character ISO 639-1 code, and 3 character ISO 639-2 code.
+ */
+export interface Language {
+  /**
+   * The full name for the language (e.g. `English`).
+   */
+  name: string;
+
+  /**
+   * The 2 character [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) code.
+   */
+  alpha2: string;
+
+  /**
+   * The 3 character [ISO 639-2](https://en.wikipedia.org/wiki/ISO_639-2) code.
+   */
+  alpha3: string;
+}
 
 /**
  * Returns a random spoken language.

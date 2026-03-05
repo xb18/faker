@@ -1,10 +1,5 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
 import { Faker } from '../../faker';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-
 /**
  * Generates a random localized full postal address, which may include a street address, secondary address, city, state, and zip code. To ensure you get locale-specific address formats, use a localized Faker instance.
  *
