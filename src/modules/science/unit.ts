@@ -1,8 +1,16 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { arrayElement } from '../helpers/array-element';
+
+export interface Unit {
+  /**
+   * The long version of the unit (e.g. `meter`).
+   */
+  name: string;
+  /**
+   * The short version/abbreviation of the unit (e.g. `Pa`).
+   */
+  symbol: string;
+}
 
 /**
  * Returns a random scientific unit.
