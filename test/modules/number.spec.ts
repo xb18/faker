@@ -1,6 +1,7 @@
 import { isHexadecimal, isOctal } from 'validator';
 import { describe, expect, it, vi } from 'vitest';
 import { FakerError, SimpleFaker, faker } from '../../src';
+import * as numberIntAll from '../../src/modules/number/int';
 import { seededTests } from '../support/seeded-runs';
 import { times } from '../support/times';
 import { MERSENNE_MAX_VALUE } from '../utils/mersenne-test-utils';
@@ -866,7 +867,7 @@ describe('number', () => {
       )(
         'should generate a Roman numeral %s for value %d',
         (expected: string, value: number) => {
-          const mock = vi.spyOn(faker.number, 'int');
+          const mock = vi.spyOn(numberIntAll, 'int');
           mock.mockReturnValue(value);
           const actual = faker.number.romanNumeral();
           mock.mockRestore();
