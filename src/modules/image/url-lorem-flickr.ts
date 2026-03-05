@@ -1,20 +1,13 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { toBase64 } from '../../internal/base64';
 import { deprecated } from '../../internal/deprecated';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { int } from '../number/int';
-import type { SexType } from '../person';
-import { url } from './url';
-import { urlLoremFlickr } from './url-lorem-flickr';
 
 /**
  * Generates a random image url provided via https://loremflickr.com.
  *
- * @param fakerCore The FakerCore to use.
  * @remark This method generates a random string representing an URL from loremflickr. Faker is not responsible for the content of the image or the service providing it.
  *
+ * @param fakerCore The FakerCore to use.
  * @param options Options for generating a URL for an image.
  * @param options.width The width of the image. Defaults to a random integer between `1` and `3999`.
  * @param options.height The height of the image. Defaults to a random integer between `1` and `3999`.
