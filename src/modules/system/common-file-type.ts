@@ -1,10 +1,14 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
+
+// Temp export
+export const commonFileTypes = [
+  'video',
+  'audio',
+  'image',
+  'text',
+  'application',
+];
 
 /**
  * Returns a commonly used file type.

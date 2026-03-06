@@ -1,12 +1,18 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { NumberOrRange } from '../../utils/types';
 import { boolean } from '../datatype/boolean';
 import { arrayElement } from '../helpers/array-element';
 import { int } from '../number/int';
+
+// Temp export
+export const CRON_DAY_OF_WEEK = [
+  'SUN',
+  'MON',
+  'TUE',
+  'WED',
+  'THU',
+  'FRI',
+  'SAT',
+] as const;
 
 /**
  * Returns a random cron expression.
