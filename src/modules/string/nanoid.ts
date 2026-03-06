@@ -1,16 +1,8 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
-import { toDate } from '../../internal/date';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing, NumberOrRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
 import { arrayElement } from '../helpers/array-element';
 import { rangeToNumber } from '../helpers/range-to-number';
 import { weightedArrayElement } from '../helpers/weighted-array-element';
-import { uuidV4, uuidV7 } from './_uuid';
 import { alphanumeric } from './alphanumeric';
 
 /**

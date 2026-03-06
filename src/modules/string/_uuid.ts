@@ -1,5 +1,6 @@
 import type { SimpleFaker } from '../../simple-faker';
 
+// temp export
 /**
  * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
  *
@@ -13,6 +14,7 @@ export function uuidV4(faker: SimpleFaker): string {
     .replaceAll('y', () => faker.number.hex({ min: 0x8, max: 0xb }));
 }
 
+// temp export
 /**
  * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
  *
