@@ -1,11 +1,14 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { ModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { shuffle } from '../helpers/shuffle';
-import { filterWordListByLength } from './_filter-word-list-by-length';
+import { adjective } from './adjective';
+import { adverb } from './adverb';
+import { conjunction } from './conjunction';
+import { interjection } from './interjection';
+import { noun } from './noun';
+import { preposition } from './preposition';
+import { verb } from './verb';
 
 /**
  * Returns a random word, that can be an adjective, adverb, conjunction, interjection, noun, preposition, or verb.
@@ -41,18 +44,18 @@ export function sample(
       } = {}
 ): string {
   const wordMethods = shuffle(fakerCore, [
-    this.adjective,
-    this.adverb,
-    this.conjunction,
-    this.interjection,
-    this.noun,
-    this.preposition,
-    this.verb,
-  ]);
+    adjective,
+    adverb,
+    conjunction,
+    interjection,
+    noun,
+    preposition,
+    verb,
+  ] satisfies Array<typeof sample>);
 
   for (const randomWordMethod of wordMethods) {
     try {
-      return randomWordMethod(options);
+      return randomWordMethod(fakerCore, options);
     } catch {
       // catch missing locale data potentially required by randomWordMethod
       continue;
