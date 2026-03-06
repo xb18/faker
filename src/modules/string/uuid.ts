@@ -1,13 +1,7 @@
 import type { FakerCore } from '../../core';
-import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
-import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing, NumberOrRange } from '../../utils/types';
-import { uuidV4, uuidV7 } from './_uuid';
+import { hex } from '../number/hex';
 
 /**
  * Returns a UUID ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
@@ -106,7 +100,6 @@ export function uuid(
     refDate?: string | Date | number;
   }
 ): string;
-
 export function uuid(
   fakerCore: FakerCore,
   options: {
@@ -124,4 +117,41 @@ export function uuid(
       return uuidV4(fakerCore);
     }
   }
+}
+
+/**
+ * Returns a UUID v4 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+ *
+ * @param fakerCore The FakerCore to use.
+ */
+function uuidV4(fakerCore: FakerCore): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replaceAll('x', () => hex(fakerCore, { min: 0x0, max: 0xf }))
+    .replaceAll('y', () => hex(fakerCore, { min: 0x8, max: 0xb }));
+}
+
+/**
+ * Returns a UUID v7 ([Universally Unique Identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier)).
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param refDate The reference date to retrieve the unix timestamp from.
+ */
+function uuidV7(fakerCore: FakerCore, refDate: Date): string {
+  const unixTimeMs = refDate.valueOf();
+  const unixTimeMsNormalized = Math.max(unixTimeMs, 0);
+  const unixTimeMsHex = unixTimeMsNormalized
+    .toString(16)
+    .padStart(12, '0')
+    .slice(-12);
+
+  const unixTimePart = [
+    unixTimeMsHex.substring(0, 8),
+    unixTimeMsHex.substring(8),
+  ].join('-');
+
+  const randomPart = '7xxx-yxxx-xxxxxxxxxxxx'
+    .replaceAll('x', () => hex(fakerCore, { min: 0x0, max: 0xf }))
+    .replaceAll('y', () => hex(fakerCore, { min: 0x8, max: 0xb }));
+
+  return `${unixTimePart}-${randomPart}`;
 }

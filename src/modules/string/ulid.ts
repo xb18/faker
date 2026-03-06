@@ -1,14 +1,15 @@
 import type { FakerCore } from '../../core';
 import { FakerError } from '../../errors/faker-error';
-import { Faker } from '../../faker';
 import { CROCKFORDS_BASE32, dateToBase32 } from '../../internal/base32';
 import { toDate } from '../../internal/date';
-import { SimpleModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
 import { getDefaultRefDate } from '../../utils/get-default-ref-date';
-import type { Casing, NumberOrRange } from '../../utils/types';
-import { uuidV4, uuidV7 } from './_uuid';
 import { fromCharacters } from './from-characters';
+
+// Temp export
+/**
+ * The largest timestamp a ULID can encode, as the timestamp component is a 48 bit unsigned integer.
+ */
+export const MAX_ULID_TIMESTAMP = 2 ** 48 - 1;
 
 /**
  * Returns a ULID ([Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec)).
