@@ -1,9 +1,5 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
+import type { Casing } from '../../utils/types';
 import type {
   StringColorFormat,
   NumberColorFormat,
@@ -12,9 +8,9 @@ import type {
 import { cmyk as colorCmyk } from './cmyk';
 import { colorByCSSColorSpace as colorColorByCSSColorSpace } from './color-by-csscolor-space';
 import { cssSupportedFunction as colorCssSupportedFunction } from './css-supported-function';
-import type { CssFunction, CssFunctionType } from './css-supported-function';
+import type { CssFunctionType } from './css-supported-function';
 import { cssSupportedSpace as colorCssSupportedSpace } from './css-supported-space';
-import type { CssSpace, CssSpaceType } from './css-supported-space';
+import type { CssSpaceType } from './css-supported-space';
 import { hsl as colorHsl } from './hsl';
 import { human as colorHuman } from './human';
 import { hwb as colorHwb } from './hwb';

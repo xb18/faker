@@ -1,9 +1,4 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import type { SexType } from '../person';
 import { avatar as imageAvatar } from './avatar';
 import { avatarGitHub as imageAvatarGitHub } from './avatar-git-hub';
@@ -169,7 +164,6 @@ export class ImageModule extends ModuleBase {
       category?: string;
     } = {}
   ): string {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Internal call
     return imageUrlLoremFlickr(this.faker.fakerCore, options);
   }
 

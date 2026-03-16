@@ -1,9 +1,4 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import { branch as gitBranch } from './branch';
 import { commitDate as gitCommitDate } from './commit-date';
 import { commitEntry as gitCommitEntry } from './commit-entry';

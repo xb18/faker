@@ -1,9 +1,4 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import { displayName as internetDisplayName } from './display-name';
 import { domainName as internetDomainName } from './domain-name';
 import { domainSuffix as internetDomainSuffix } from './domain-suffix';
@@ -17,7 +12,7 @@ import { httpStatusCode as internetHttpStatusCode } from './http-status-code';
 import type { HTTPStatusCodeType } from './http-status-code';
 import { ip as internetIp } from './ip';
 import { ipv4 as internetIpv4 } from './ipv4';
-import type { IPv4Network, IPv4NetworkType } from './ipv4';
+import type { IPv4NetworkType } from './ipv4';
 import { ipv6 as internetIpv6 } from './ipv6';
 import { jwt as internetJwt } from './jwt';
 import { jwtAlgorithm as internetJwtAlgorithm } from './jwt-algorithm';

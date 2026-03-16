@@ -1,9 +1,5 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
+import type { LengthStrategyType, NumberOrRange } from '../../utils/types';
 import { lines as loremLines } from './lines';
 import { paragraph as loremParagraph } from './paragraph';
 import { paragraphs as loremParagraphs } from './paragraphs';

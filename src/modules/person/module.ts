@@ -1,9 +1,4 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import { bio as personBio } from './bio';
 import { firstName as personFirstName } from './first-name';
 import { fullName as personFullName } from './full-name';
@@ -17,7 +12,7 @@ import { middleName as personMiddleName } from './middle-name';
 import { prefix as personPrefix } from './prefix';
 import { sex as personSex } from './sex';
 import { sexType as personSexType } from './sex-type';
-import type { Sex, SexType } from './sex-type';
+import type { SexType } from './sex-type';
 import { suffix as personSuffix } from './suffix';
 import { zodiacSign as personZodiacSign } from './zodiac-sign';
 

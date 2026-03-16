@@ -1,9 +1,4 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import { bear as animalBear } from './bear';
 import { bird as animalBird } from './bird';
 import { cat as animalCat } from './cat';
