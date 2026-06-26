@@ -3,9 +3,14 @@ import { resolve } from 'node:path';
 import { SyntaxKind } from 'ts-morph';
 import { getDeprecated, getJsDocs } from './apidocs/processing/jsdocs';
 import { getProject } from './apidocs/project';
-import { toCamelCase, toKebabCase } from './shared/character-case';
+import {
+  toCamelCase,
+  toKebabCase,
+  toPascalCase,
+} from './shared/character-case';
 import { formatTypescript } from './shared/format';
 import { FILE_PATH_SRC } from './shared/paths';
+import { ALLOWED_MODULES } from './temp-module-filter';
 
 const project = getProject();
 
@@ -19,6 +24,9 @@ const moduleNames = new Set(directories.map((dir) => dir.getBaseName()));
 //#region Module
 for (const directory of directories) {
   const moduleName = directory.getBaseName();
+  if (!ALLOWED_MODULES.has(toPascalCase(`${moduleName}Module`))) {
+    continue;
+  }
 
   console.log(`Processing module: ${moduleName}`);
   //#region Module
