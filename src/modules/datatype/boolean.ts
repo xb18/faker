@@ -1,7 +1,4 @@
 import type { FakerCore } from '../../core';
-import { Faker } from '../../faker';
-import { SimpleModuleBase } from '../../internal/module-base';
-import { getDefaultRefDate } from '../../utils/get-default-ref-date';
 import { float } from '../number/float';
 
 /**
