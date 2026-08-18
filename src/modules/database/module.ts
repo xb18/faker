@@ -1,4 +1,14 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { collation as databaseCollation } from './collation';
+import { column as databaseColumn } from './column';
+import { engine as databaseEngine } from './engine';
+import { mongodbObjectId as databaseMongodbObjectId } from './mongodb-object-id';
+import { type as databaseType } from './type';
 
 /**
  * Module to generate database related entries.
@@ -19,9 +29,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   column(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.column
-    );
+    return databaseColumn(this.faker.fakerCore);
   }
 
   /**
@@ -33,9 +41,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   type(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.type
-    );
+    return databaseType(this.faker.fakerCore);
   }
 
   /**
@@ -47,9 +53,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   collation(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.collation
-    );
+    return databaseCollation(this.faker.fakerCore);
   }
 
   /**
@@ -61,9 +65,7 @@ export class DatabaseModule extends ModuleBase {
    * @since 4.0.0
    */
   engine(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.database.engine
-    );
+    return databaseEngine(this.faker.fakerCore);
   }
 
   /**
@@ -75,10 +77,6 @@ export class DatabaseModule extends ModuleBase {
    * @since 6.2.0
    */
   mongodbObjectId(): string {
-    return this.faker.string.hexadecimal({
-      length: 24,
-      casing: 'lower',
-      prefix: '',
-    });
+    return databaseMongodbObjectId(this.faker.fakerCore);
   }
 }

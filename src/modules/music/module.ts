@@ -1,4 +1,13 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { album as musicAlbum } from './album';
+import { artist as musicArtist } from './artist';
+import { genre as musicGenre } from './genre';
+import { songName as musicSongName } from './song-name';
 
 /**
  * Module to generate music related entries.
@@ -27,7 +36,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   album(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.album);
+    return musicAlbum(this.faker.fakerCore);
   }
 
   /**
@@ -39,7 +48,7 @@ export class MusicModule extends ModuleBase {
    * @since 9.0.0
    */
   artist(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.artist);
+    return musicArtist(this.faker.fakerCore);
   }
 
   /**
@@ -51,7 +60,7 @@ export class MusicModule extends ModuleBase {
    * @since 5.2.0
    */
   genre(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.music.genre);
+    return musicGenre(this.faker.fakerCore);
   }
 
   /**
@@ -63,8 +72,6 @@ export class MusicModule extends ModuleBase {
    * @since 7.1.0
    */
   songName(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.music.song_name
-    );
+    return musicSongName(this.faker.fakerCore);
   }
 }

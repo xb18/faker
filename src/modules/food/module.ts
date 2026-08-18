@@ -1,5 +1,18 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import { toTitleCase } from './dish';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { adjective as foodAdjective } from './adjective';
+import { description as foodDescription } from './description';
+import { dish as foodDish } from './dish';
+import { ethnicCategory as foodEthnicCategory } from './ethnic-category';
+import { fruit as foodFruit } from './fruit';
+import { ingredient as foodIngredient } from './ingredient';
+import { meat as foodMeat } from './meat';
+import { spice as foodSpice } from './spice';
+import { vegetable as foodVegetable } from './vegetable';
 
 /**
  * Module for generating food-related data.
@@ -20,9 +33,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   adjective(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.adjective
-    );
+    return foodAdjective(this.faker.fakerCore);
   }
 
   /**
@@ -34,9 +45,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   description(): string {
-    return this.faker.helpers.fake(
-      this.faker.definitions.food.description_pattern
-    );
+    return foodDescription(this.faker.fakerCore);
   }
 
   /**
@@ -48,16 +57,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   dish(): string {
-    // A 50/50 mix of specific dishes and dish_patterns
-    if (this.faker.datatype.boolean()) {
-      return toTitleCase(
-        this.faker.helpers.fake(this.faker.definitions.food.dish_pattern)
-      );
-    }
-
-    return toTitleCase(
-      this.faker.helpers.arrayElement(this.faker.definitions.food.dish)
-    );
+    return foodDish(this.faker.fakerCore);
   }
 
   /**
@@ -69,9 +69,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ethnicCategory(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.ethnic_category
-    );
+    return foodEthnicCategory(this.faker.fakerCore);
   }
 
   /**
@@ -83,7 +81,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   fruit(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.fruit);
+    return foodFruit(this.faker.fakerCore);
   }
 
   /**
@@ -95,9 +93,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   ingredient(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.ingredient
-    );
+    return foodIngredient(this.faker.fakerCore);
   }
 
   /**
@@ -109,7 +105,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   meat(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.meat);
+    return foodMeat(this.faker.fakerCore);
   }
 
   /**
@@ -121,7 +117,7 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   spice(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.food.spice);
+    return foodSpice(this.faker.fakerCore);
   }
 
   /**
@@ -133,8 +129,6 @@ export class FoodModule extends ModuleBase {
    * @since 9.0.0
    */
   vegetable(): string {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.food.vegetable
-    );
+    return foodVegetable(this.faker.fakerCore);
   }
 }

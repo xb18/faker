@@ -1,5 +1,11 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import { legacyReplaceSymbolWithNumber } from '../helpers';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { imei as phoneImei } from './imei';
+import { number as phoneNumber } from './number';
 
 /**
  * Module to generate phone-related data.
@@ -41,16 +47,7 @@ export class PhoneModule extends ModuleBase {
       style?: 'human' | 'national' | 'international' | 'mobile';
     } = {}
   ): string {
-    const { style = 'human' } = options;
-    const formats = this.faker.definitions.phone_number.format;
-
-    const definitions = formats[style];
-    if (!definitions) {
-      throw new Error(`No definitions for ${style} in this locale`);
-    }
-
-    const format = this.faker.helpers.arrayElement(definitions);
-    return legacyReplaceSymbolWithNumber(this.faker, format);
+    return phoneNumber(this.faker.fakerCore, options);
   }
 
   /**
@@ -62,9 +59,6 @@ export class PhoneModule extends ModuleBase {
    * @since 6.2.0
    */
   imei(): string {
-    return this.faker.helpers.replaceCreditCardSymbols(
-      '##-######-######-L',
-      '#'
-    );
+    return phoneImei(this.faker.fakerCore);
   }
 }

@@ -1,4 +1,10 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
+import { ModuleBase } from '../../internal/module-base';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { boolean as datatypeBoolean } from './boolean';
 
 /**
  * Module to generate boolean values.
@@ -38,22 +44,6 @@ export class DatatypeModule extends SimpleModuleBase {
           probability?: number;
         } = {}
   ): boolean {
-    if (typeof options === 'number') {
-      options = {
-        probability: options,
-      };
-    }
-
-    const { probability = 0.5 } = options;
-    if (probability <= 0) {
-      return false;
-    }
-
-    if (probability >= 1) {
-      // This check is required to avoid returning false when float() returns 1
-      return true;
-    }
-
-    return this.faker.number.float() < probability;
+    return datatypeBoolean(this.faker.fakerCore, options);
   }
 }

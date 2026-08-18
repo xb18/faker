@@ -1,5 +1,12 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
+import { chemicalElement as scienceChemicalElement } from './chemical-element';
 import type { ChemicalElement } from './chemical-element';
+import { unit as scienceUnit } from './unit';
 import type { Unit } from './unit';
 
 /**
@@ -21,9 +28,7 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   chemicalElement(): ChemicalElement {
-    return this.faker.helpers.arrayElement(
-      this.faker.definitions.science.chemical_element
-    );
+    return scienceChemicalElement(this.faker.fakerCore);
   }
 
   /**
@@ -37,6 +42,6 @@ export class ScienceModule extends ModuleBase {
    * @since 7.2.0
    */
   unit(): Unit {
-    return this.faker.helpers.arrayElement(this.faker.definitions.science.unit);
+    return scienceUnit(this.faker.fakerCore);
   }
 }

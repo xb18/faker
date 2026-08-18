@@ -1,16 +1,27 @@
+import type { Distributor } from '../../distributors/distributor';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
 import { ModuleBase } from '../../internal/module-base';
-import type { Casing } from '../../utils/types';
-import { formatHexColor } from './_format-hex-color';
-import { toColorFormat } from './_to-color-format';
+import type { LiteralUnion } from '../../internal/types';
+import type { Casing, NumberRange } from '../../utils/types';
 import type {
-  ColorFormat,
-  NumberColorFormat,
   StringColorFormat,
+  NumberColorFormat,
+  ColorFormat,
 } from './_types';
-import type { CssFunctionType } from './css-supported-function';
-import { CssFunction } from './css-supported-function';
-import type { CssSpaceType } from './css-supported-space';
-import { CssSpace } from './css-supported-space';
+import { cmyk as colorCmyk } from './cmyk';
+import { colorByCSSColorSpace as colorColorByCSSColorSpace } from './color-by-csscolor-space';
+import { cssSupportedFunction as colorCssSupportedFunction } from './css-supported-function';
+import type { CssFunction, CssFunctionType } from './css-supported-function';
+import { cssSupportedSpace as colorCssSupportedSpace } from './css-supported-space';
+import type { CssSpace, CssSpaceType } from './css-supported-space';
+import { hsl as colorHsl } from './hsl';
+import { human as colorHuman } from './human';
+import { hwb as colorHwb } from './hwb';
+import { lab as colorLab } from './lab';
+import { lch as colorLch } from './lch';
+import { rgb as colorRgb } from './rgb';
+import { space as colorSpace } from './space';
 
 /**
  * Module to generate colors.
@@ -31,7 +42,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   human(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.human);
+    return colorHuman(this.faker.fakerCore);
   }
 
   /**
@@ -44,7 +55,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   space(): string {
-    return this.faker.helpers.arrayElement(this.faker.definitions.color.space);
+    return colorSpace(this.faker.fakerCore);
   }
 
   /**
@@ -56,7 +67,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedFunction(): CssFunctionType {
-    return this.faker.helpers.enumValue(CssFunction);
+    return colorCssSupportedFunction(this.faker.fakerCore);
   }
 
   /**
@@ -68,7 +79,7 @@ export class ColorModule extends ModuleBase {
    * @since 7.0.0
    */
   cssSupportedSpace(): CssSpaceType {
-    return this.faker.helpers.enumValue(CssSpace);
+    return colorCssSupportedSpace(this.faker.fakerCore);
   }
 
   /**
@@ -216,30 +227,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    const {
-      format = 'hex',
-      includeAlpha = false,
-      prefix = '#',
-      casing = 'lower',
-    } = options;
-    let color: string | number[];
-    if (format === 'hex') {
-      color = this.faker.string.hexadecimal({
-        length: includeAlpha ? 8 : 6,
-        prefix: '',
-      });
-      color = formatHexColor(color, { prefix, casing });
-      return color;
-    }
-
-    let cssFunction: CssFunctionType = 'rgb';
-    color = Array.from({ length: 3 }, () => this.faker.number.int(255));
-    if (includeAlpha) {
-      color.push(this.faker.number.float({ multipleOf: 0.01 }));
-      cssFunction = 'rgba';
-    }
-
-    return toColorFormat(color, format, cssFunction);
+    return colorRgb(this.faker.fakerCore, options);
   }
 
   /**
@@ -315,11 +303,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   cmyk(options: { format?: ColorFormat } = {}): string | number[] {
-    const { format = 'decimal' } = options;
-    const color: string | number[] = Array.from({ length: 4 }, () =>
-      this.faker.number.float({ multipleOf: 0.01 })
-    );
-    return toColorFormat(color, format, 'cmyk');
+    return colorCmyk(this.faker.fakerCore, options);
   }
 
   /**
@@ -427,13 +411,7 @@ export class ColorModule extends ModuleBase {
       includeAlpha?: boolean;
     } = {}
   ): string | number[] {
-    const { format = 'decimal', includeAlpha = false } = options;
-    const hsl: number[] = [this.faker.number.int(360)];
-    for (let i = 0; i < (options?.includeAlpha ? 3 : 2); i++) {
-      hsl.push(this.faker.number.float({ multipleOf: 0.01 }));
-    }
-
-    return toColorFormat(hsl, format, includeAlpha ? 'hsla' : 'hsl');
+    return colorHsl(this.faker.fakerCore, options);
   }
 
   /**
@@ -532,13 +510,7 @@ export class ColorModule extends ModuleBase {
       format?: ColorFormat;
     } = {}
   ): string | number[] {
-    const { format = 'decimal' } = options;
-    const hsl: number[] = [this.faker.number.int(360)];
-    for (let i = 0; i < 2; i++) {
-      hsl.push(this.faker.number.float({ multipleOf: 0.01 }));
-    }
-
-    return toColorFormat(hsl, format, 'hwb');
+    return colorHwb(this.faker.fakerCore, options);
   }
 
   /**
@@ -614,15 +586,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lab(options: { format?: ColorFormat } = {}): string | number[] {
-    const { format = 'decimal' } = options;
-    const lab = [this.faker.number.float({ multipleOf: 0.000001 })];
-    for (let i = 0; i < 2; i++) {
-      lab.push(
-        this.faker.number.float({ min: -100, max: 100, multipleOf: 0.0001 })
-      );
-    }
-
-    return toColorFormat(lab, format, 'lab');
+    return colorLab(this.faker.fakerCore, options);
   }
 
   /**
@@ -710,17 +674,7 @@ export class ColorModule extends ModuleBase {
     format?: ColorFormat;
   }): string | number[];
   lch(options: { format?: ColorFormat } = {}): string | number[] {
-    const { format = 'decimal' } = options;
-    const lch = [
-      // Lightness is a fraction between 0 and 1.
-      this.faker.number.float({ multipleOf: 0.000001 }),
-      // Chroma is theoretically unbounded, see the docs above for why 230.
-      this.faker.number.float({ max: 230, multipleOf: 0.1 }),
-      // Hue is an angle in degrees.
-      this.faker.number.float({ max: 360, multipleOf: 0.1 }),
-    ];
-
-    return toColorFormat(lch, format, 'lch');
+    return colorLch(this.faker.fakerCore, options);
   }
 
   /**
@@ -822,11 +776,6 @@ export class ColorModule extends ModuleBase {
       space?: CssSpaceType;
     } = {}
   ): string | number[] {
-    const { format = 'decimal', space = 'sRGB' } = options;
-
-    const color = Array.from({ length: 3 }, () =>
-      this.faker.number.float({ multipleOf: 0.0001 })
-    );
-    return toColorFormat(color, format, 'color', space);
+    return colorColorByCSSColorSpace(this.faker.fakerCore, options);
   }
 }
