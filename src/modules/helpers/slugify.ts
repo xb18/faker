@@ -1,0 +1,32 @@
+import type { FakerCore } from '../../core';
+import { FakerError } from '../../errors/faker-error';
+import { Faker } from '../../faker';
+import type { Faker } from '../../faker';
+import { SimpleModuleBase } from '../../internal/module-base';
+import type { SimpleFaker } from '../../simple-faker';
+import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import type { NumberOrRange } from '../../utils/types';
+import { fakeEval } from './_eval';
+import { luhnCheckValue } from './_luhn-check';
+
+/**
+ * Slugifies the given string.
+ * For that all spaces (` `) are replaced by hyphens (`-`)
+ * and most non word characters except for dots and hyphens will be removed.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param string The input to slugify. Defaults to `''`.
+ *
+ * @example
+ * slugify(fakerCore) // ''
+ * slugify(fakerCore, "Hello world!") // 'Hello-world'
+ *
+ * @since 2.0.1
+ */
+export function slugify(fakerCore: FakerCore, string: string = ''): string {
+  return string
+    .normalize('NFKD') //for example è decomposes to as e +  ̀
+    .replaceAll(/[\u0300-\u036F]/g, '') // removes combining marks
+    .replaceAll(' ', '-') // replaces spaces with hyphens
+    .replaceAll(/[^\w.-]+/g, ''); // removes all non-word characters except for dots and hyphens
+}

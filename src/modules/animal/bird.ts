@@ -1,0 +1,19 @@
+import type { FakerCore } from '../../core';
+import { Faker } from '../../faker';
+import { ModuleBase } from '../../internal/module-base';
+import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import { arrayElement } from '../helpers/array-element';
+
+/**
+ * Returns a random bird species.
+ *
+ * @param fakerCore The FakerCore to use.
+ *
+ * @example
+ * bird(fakerCore) // 'Buller's Shearwater'
+ *
+ * @since 5.5.0
+ */
+export function bird(fakerCore: FakerCore): string {
+  return arrayElement(fakerCore, fakerCore.locale.animal.bird);
+}

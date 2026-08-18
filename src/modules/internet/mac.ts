@@ -1,0 +1,107 @@
+import type { FakerCore } from '../../core';
+import { FakerError } from '../../errors/faker-error';
+import { Faker } from '../../faker';
+import type { Faker } from '../../faker';
+import { toBase64Url } from '../../internal/base64';
+import { ModuleBase } from '../../internal/module-base';
+import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import { hex } from '../number/hex';
+import { charMapping } from './_char-mappings';
+
+/**
+ * Generates a random mac address.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options An options object.
+ * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+ *
+ * @example
+ * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ *
+ * @since 3.0.0
+ */
+export function mac(
+  fakerCore: FakerCore,
+  options?: {
+    /**
+     * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+     *
+     * @default ':'
+     */
+    separator?: string;
+  }
+): string;
+/**
+ * Generates a random mac address.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+ *
+ * @example
+ * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ *
+ * @since 3.0.0
+ */
+export function mac(fakerCore: FakerCore, separator?: string): string;
+/**
+ * Generates a random mac address.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options The optional separator or an options object.
+ * @param options.separator The optional separator to use. Can be either `':'`, `'-'` or `''`. Defaults to `':'`.
+ *
+ * @example
+ * mac(fakerCore) // '32:8e:2e:09:c6:05'
+ *
+ * @since 3.0.0
+ */
+export function mac(
+  fakerCore: FakerCore,
+  options?:
+    | string
+    | {
+        /**
+         * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+         *
+         * @default ':'
+         */
+        separator?: string;
+      }
+): string;
+
+export function mac(
+  fakerCore: FakerCore,
+  options:
+    | string
+    | {
+        /**
+         * The optional separator to use. Can be either `':'`, `'-'` or `''`.
+         *
+         * @default ':'
+         */
+        separator?: string;
+      } = {}
+): string {
+  if (typeof options === 'string') {
+    options = { separator: options };
+  }
+
+  let { separator = ':' } = options;
+
+  let i: number;
+  let mac = '';
+
+  const acceptableSeparators = [':', '-', ''];
+  if (!acceptableSeparators.includes(separator)) {
+    separator = ':';
+  }
+
+  for (i = 0; i < 12; i++) {
+    mac += hex(fakerCore, 15);
+    if (i !== 11 && i % 2 === 1) {
+      mac += separator;
+    }
+  }
+
+  return mac;
+}

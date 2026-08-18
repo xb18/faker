@@ -1,0 +1,129 @@
+import type { FakerCore } from '../../core';
+import { Faker } from '../../faker';
+import { ModuleBase } from '../../internal/module-base';
+import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import type { Casing } from '../../utils/types';
+import { float } from '../number/float';
+
+/**
+ * Returns a random color based on CSS color space specified.
+ *
+ * @param fakerCore The FakerCore to use.
+ *
+ * @example
+ * colorByCSSColorSpace(fakerCore) // [0.93, 1, 0.82]
+ *
+ * @since 7.0.0
+ */
+export function colorByCSSColorSpace(fakerCore: FakerCore): number[];
+/**
+ * Returns a random color based on CSS color space specified.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options Options object.
+ * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+ * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
+ *
+ * @example
+ * colorByCSSColorSpace(fakerCore) // [0.93, 1, 0.82]
+ * colorByCSSColorSpace(fakerCore, { format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
+ * colorByCSSColorSpace(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
+ *
+ * @since 7.0.0
+ */
+export function colorByCSSColorSpace(
+  fakerCore: FakerCore,
+  options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: StringColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
+    space?: CssSpaceType;
+  }
+): string;
+/**
+ * Returns a random color based on CSS color space specified.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options Options object.
+ * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+ * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
+ *
+ * @example
+ * colorByCSSColorSpace(fakerCore) // [0.93, 1, 0.82]
+ * colorByCSSColorSpace(fakerCore, { format: 'decimal' }) // [0.12, 0.21, 0.31]
+ *
+ * @since 7.0.0
+ */
+export function colorByCSSColorSpace(
+  fakerCore: FakerCore,
+  options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: NumberColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
+    space?: CssSpaceType;
+  }
+): number[];
+/**
+ * Returns a random color based on CSS color space specified.
+ *
+ * @param fakerCore The FakerCore to use.
+ * @param options Options object.
+ * @param options.format Format of generated RGB color. Defaults to `'decimal'`.
+ * @param options.space Color space to generate the color for. Defaults to `'sRGB'`.
+ *
+ * @example
+ * colorByCSSColorSpace(fakerCore) // [0.93, 1, 0.82]
+ * colorByCSSColorSpace(fakerCore, { format: 'decimal' }) // [0.12, 0.21, 0.31]
+ * colorByCSSColorSpace(fakerCore, { format: 'css', space: 'display-p3' }) // color(display-p3 0.12 1 0.23)
+ * colorByCSSColorSpace(fakerCore, { format: 'binary' }) // (8-32 bits x 3)
+ *
+ * @since 7.0.0
+ */
+export function colorByCSSColorSpace(
+  fakerCore: FakerCore,
+  options?: {
+    /**
+     * Format of generated RGB color.
+     *
+     * @default 'decimal'
+     */
+    format?: ColorFormat;
+    /**
+     * Color space to generate the color for.
+     *
+     * @default 'sRGB'
+     */
+    space?: CssSpaceType;
+  }
+): string | number[];
+
+export function colorByCSSColorSpace(
+  fakerCore: FakerCore,
+  options: {
+    format?: ColorFormat;
+    space?: CssSpaceType;
+  } = {}
+): string | number[] {
+  const { format = 'decimal', space = 'sRGB' } = options;
+
+  const color = Array.from({ length: 3 }, () =>
+    float(fakerCore, { multipleOf: 0.0001 })
+  );
+  return toColorFormat(color, format, 'color', space);
+}

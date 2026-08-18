@@ -1,0 +1,19 @@
+import type { FakerCore } from '../../core';
+import { Faker } from '../../faker';
+import { ModuleBase } from '../../internal/module-base';
+import { getDefaultRefDate } from '../../utils/get-default-ref-date';
+import { arrayElement } from '../helpers/array-element';
+
+/**
+ * Returns a random rabbit species.
+ *
+ * @param fakerCore The FakerCore to use.
+ *
+ * @example
+ * rabbit(fakerCore) // 'Florida White'
+ *
+ * @since 5.5.0
+ */
+export function rabbit(fakerCore: FakerCore): string {
+  return arrayElement(fakerCore, fakerCore.locale.animal.rabbit);
+}
