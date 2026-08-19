@@ -1,9 +1,7 @@
-import type { Distributor } from '../../distributors/distributor';
 import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
+import type { NumberOrRange } from '../../utils/types';
+import { fakeEval } from './_eval';
 import { arrayElement as helpersArrayElement } from './array-element';
 import { arrayElements as helpersArrayElements } from './array-elements';
 import { enumValue as helpersEnumValue } from './enum-value';

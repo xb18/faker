@@ -1,9 +1,5 @@
 import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { ModuleBase } from '../../internal/module-base';
-import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
 import { bigInt as numberBigInt } from './big-int';
 import { binary as numberBinary } from './binary';
 import { float as numberFloat } from './float';

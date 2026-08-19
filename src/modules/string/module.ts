@@ -1,16 +1,7 @@
-import type { Distributor } from '../../distributors/distributor';
-import type { Faker } from '../../faker';
 import { SimpleModuleBase } from '../../internal/module-base';
-import { ModuleBase } from '../../internal/module-base';
 import type { LiteralUnion } from '../../internal/types';
-import type { Casing, NumberRange } from '../../utils/types';
-import type {
-  LowerAlphaChar,
-  UpperAlphaChar,
-  NumericChar,
-  AlphaChar,
-  AlphaNumericChar,
-} from './_types';
+import type { Casing, NumberOrRange } from '../../utils/types';
+import type { AlphaChar, AlphaNumericChar, NumericChar } from './_types';
 import { alpha as stringAlpha } from './alpha';
 import { alphanumeric as stringAlphanumeric } from './alphanumeric';
 import { binary as stringBinary } from './binary';
