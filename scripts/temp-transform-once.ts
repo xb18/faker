@@ -6,9 +6,9 @@ import { newProcessingError } from './apidocs/processing/error';
 import type { SignatureLikeDeclaration } from './apidocs/processing/signature';
 import { getProject } from './apidocs/project';
 import { required } from './apidocs/utils/value-checks';
+import { toCamelCase, toKebabCase } from './shared/character-case';
 import { formatTypescript } from './shared/format';
 import { FILE_PATH_SRC } from './shared/paths';
-import { toCamelCase, toKebabCase } from './shared/character-case';
 
 const coreName = 'fakerCore';
 
