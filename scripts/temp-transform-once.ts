@@ -9,6 +9,7 @@ import { required } from './apidocs/utils/value-checks';
 import { formatTypescript } from './shared/format';
 import { FILE_PATH_SRC } from './shared/paths';
 import { ALLOWED_MODULES } from './temp-module-filter';
+import { toCamelCase, toKebabCase } from './shared/character-case';
 
 const coreName = 'fakerCore';
 
@@ -133,22 +134,6 @@ async function processMethods(
       });
     }
   }
-}
-
-function toKebabCase(str: string): string {
-  return str.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-}
-
-function toCamelCase(value: string, ...more: string[]): string {
-  return (
-    value.substring(0, 1).toLowerCase() +
-    value.substring(1) +
-    more.map(toPascalCase).join('')
-  );
-}
-
-function toPascalCase(value: string): string {
-  return value.substring(0, 1).toUpperCase() + value.substring(1);
 }
 
 async function processMethod(
